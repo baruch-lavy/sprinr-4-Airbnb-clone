@@ -1,5 +1,7 @@
 node_modules
 logs
 
+.env
+
 
 mongodb+srv://baruchlavy:<db_password>@cluster0.mr14t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
