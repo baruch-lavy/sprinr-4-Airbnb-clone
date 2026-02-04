@@ -67,7 +67,7 @@ function _saveLocalUser(user) {
 }
 
 // To quickly create an admin user, uncomment the next line
-// _createAdmin()
+_createAdmin()
 async function _createAdmin() {
     const user = {
         username: 'admin',
@@ -77,6 +77,6 @@ async function _createAdmin() {
         score: 10000,
     }
 
-    const newUser = await storageService.post('user', userCred)
-    console.log('newUser: ', newUser)
+    const newUser = await storageService.post('user', user)
+    // console.log('newUser Admin: ', newUser)
 }

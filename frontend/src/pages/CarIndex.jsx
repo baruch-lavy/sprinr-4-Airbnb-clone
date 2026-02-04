@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadCars, addCar, updateCar, removeCar, addCarMsg } from '../store/car.actions'
+import { loadCars, addCar, updateCar, removeCar, addCarMsg } from '../store/actions/car.actions'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
-import { carService } from '../services/car/'
+import { carService } from '../services/car'
 import { userService } from '../services/user'
 
 import { CarList } from '../cmps/CarList'

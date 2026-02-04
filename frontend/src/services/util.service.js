@@ -53,3 +53,9 @@ export function loadFromStorage(key) {
     const data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined
 }
+
+export function getRandomDate() {
+    const start = new Date(2025, 0, 1);
+    const end = new Date(2025, 11, 31);
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+}

@@ -1,56 +1,407 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .app-header {
-    min-height: 5rem;
-    background-color: $clr4;
-    nav {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        gap: 1em;
+  border-bottom: 0.1px solid $gray1;
+  height: 20vh;
+  background: #fdfdfd;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
 
-        font-size: 0.8em;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-        .active {
-            color: $clr1;
-        }
+.left-section {
+  // border: 2px solid green;
+  grid-column: 1;
+  justify-self: start;
+  align-self: start;
 
-        .logo {
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-inline-end: 2em;
-        }
+  .logo-wrapper {
+    display: flex;
+    align-items: end;
 
-        .login-link {
-            margin-inline-start: auto;
-        }
+    .logo-text {
+      margin-left: -1.6rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #ff385c;
+    }
+    font-size: 1.5rem;
+    .logo {
+      color: #ff385c;
+      font-size: 2.5rem;
+      margin: 1.5rem;
+    }
+  }
+}
 
-        button {
-            margin-inline-end: 0;
-        }
+.middle-section {
+  // border: 1px solid rgb(4, 98, 110);
+
+  .nav-bar {
+    height: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .nav-bar > * {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1rem;
+    color: #717171;
+
+    img {
+      width: 2rem;
     }
 
-    .user-info {
-        display: flex;
-        align-items: center;
-        margin-inline-start: auto;
-        color: $clr1;
-
-        .score {
-            padding: 8px;
-            background-color: $clr2;
-            border-radius: 50%;
-            margin: 10px;
-
-            color: $clr6;
-        }
-
-        img {
-            width: 32px;
-            aspect-ratio: 1;
-            border-radius: 50%;
-        }
-
-        .btn-link {
-            color: $clr2;
-        }
+    div {
+      font-size: 2rem;
     }
+
+    .homes-text {
+      font-weight: 700;
+      color: #6a6a6a;
+    }
+
+    @media (max-width: 1450px) {
+      img {
+        width: 1rem;
+        margin-left: 1rem;
+      }
+
+      .home-icon,
+      .bell-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.right-section {
+  margin-right: 1rem;
+  grid-column: 3;
+  text-align: end;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+
+  .right-section-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 0.9rem;
+  }
+
+  .language-img,
+  .humburger-img {
+    width: 1.5rem;
+  }
+
+  .humburger-img {
+    margin: 0 1rem;
+  }
+
+  .language-img {
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 1200px) {
+    .right-section-text {
+      display: none;
+    }
+  }
+}
+
+.search-container {
+  background: $clr6;
+  border: 1.5px solid $gray1;
+  border-radius: 65px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+  grid-column: 2;
+  height: 4.2rem;
+  width: 66%;
+
+  padding: 0 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  justify-self: center;
+
+  > * {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .where-section,
+  .when-section,
+  .who-section {
+    position: relative;
+    font-size: 0.82rem;
+    margin-left: 1rem;
+    color: #222222;
+
+    input {
+      border: none;
+      font-size: 0.9rem;
+    }
+
+    input:focus-within {
+      outline: none;
+    }
+  }
+
+  .who-section {
+    flex-direction: row;
+    align-items: center;
+
+    .search-icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 3rem;
+      height: 3rem;
+      background: #ff385c;
+      padding: 0.8rem;
+      border-radius: 50%;
+      margin-right: -1rem;
+    }
+
+    .who-wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+    }
+
+    svg {
+      fill: white;
+      width: 1.7rem;
+      height: 1.7rem;
+    }
+  }
+
+  .border {
+    width: 1px;
+    height: 2rem;
+    background: $gray2;
+    margin-bottom: 0.1rem;
+  }
+
+  @media (max-width: 1200px) {
+    width: 120%;
+
+    .border {
+      display: none;
+    }
+    input {
+      background: transparent;
+    }
+  }
+}
+
+.where-dropdown {
+  position: absolute;
+  top: 75px;
+  left: -2.8rem;
+  width: 200%;
+  background: white;
+  border: 1px solid $gray1;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 1rem;
+
+  .dropdown-header {
+    padding: 1rem;
+    border-bottom: 1px solid $gray1;
+    font-weight: 600;
+  }
+
+  .suggestion {
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: $gray1;
+      border-radius: 1rem;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+      color: #ff385c;
+    }
+  }
+}
+
+// react-datepicker — Airbnb-like visual overrides (scoped to search)
+.search-container {
+  .react-datepicker__triangle {
+    display: none;
+  }
+
+  .react-datepicker {
+    border: none;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 8px;
+    font-family: inherit;
+    color: #222;
+  }
+
+  .react-datepicker__month-container {
+    display: flex;
+    padding: 0.5rem;
+  }
+
+  .react-datepicker__header {
+    background: transparent;
+    border-bottom: none;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .react-datepicker__current-month {
+    font-weight: 700;
+    color: #222;
+    font-size: 1rem;
+  }
+
+  .react-datepicker__navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 8px;
+    border: none;
+    background: transparent;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+
+  .react-datepicker__navigation--previous,
+  .react-datepicker__navigation--next {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .react-datepicker__navigation--previous:hover,
+  .react-datepicker__navigation--next:hover {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .react-datepicker__month {
+    padding: 12px 8px;
+  }
+
+  .react-datepicker__day {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    margin: 4px;
+    text-align: center;
+    color: #6b6b6b;
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--in-range {
+    background: linear-gradient(180deg, #ff385c, #ff6b81);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .react-datepicker__day--in-range:not(.react-datepicker__day--selected) {
+    background: rgba(255, 56, 92, 0.08);
+    color: #ff385c;
+  }
+
+  .react-datepicker__day--keyboard-selected {
+    box-shadow: 0 0 0 2px rgba(255, 56, 92, 0.18);
+    border-radius: 50%;
+  }
+
+  .react-datepicker__day--disabled {
+    color: #e6e6e6;
+    background: transparent;
+  }
+
+  .react-datepicker__day:hover {
+    background: rgba(0, 0, 0, 0.06);
+    color: #222;
+  }
+
+  .react-datepicker__triangle::after {
+    display: none;
+  }
+
+  @media (max-width: 700px) {
+    .react-datepicker__month-container {
+      flex-direction: column;
+    }
+  }
+
+  .react-datepicker-popper {
+    z-index: 9999;
+  }
+}
+
+.who-dropdown {
+  position: absolute;
+  top: 75px;
+  right: -2.8rem;
+  width: 170%;
+  background: white;
+  border: 1px solid $gray1;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 1rem;
+
+
+  .guest-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  .guest-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
