@@ -10,16 +10,25 @@ import { SET_SEARCH_DATA } from "../actions/stay.actions";
 const initialState = {
     stays: [],
     stay: null,
-    destination: "Anywhere",
+    destination: "",
     startDate: null,
     endDate: null,
-    guests: "Add guests"
+    totalGuests: 0,
+    guests: {
+      adults: 0,
+      children: 0,
+      infants: 0,
+      pets :0
+    }
 }
 
 export const searchReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_SEARCH_DATA:
-            return { ...state, ...action.payload }
+            const newState = { ...state, ...action.payload };
+            const guestsUpdatedState = { ...newState, guests: { ...state.guests, ...action.payload.guests }};
+            console.log('guestsUpdatedState',guestsUpdatedState);
+            return guestsUpdatedState;
         default:
             return state
     }

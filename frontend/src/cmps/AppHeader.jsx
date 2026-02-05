@@ -9,24 +9,18 @@ import { useState, useEffect, useRef } from "react";
 import { loadStays } from "../store/actions/stay.actions";
 import { setSearchData } from "../store/actions/stay.actions";
 
-
-
 export function AppHeader() {
-  const search = useSelector((state) => state.searchModule.search || {});
-
-  console.log(search);
-
   const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
   const [isWhoDropdownOpen, setIsWhoDropdownOpen] = useState(false);
+  const search = useSelector((state) => state.searchModule);
   const [filterBy, setFilterBy] = useState(getDefaultFilter());
   const searchTimeout = useRef(null);
+  const dates = useRef([null, null]);
 
-  
 
   useEffect(() => {
     loadStays(filterBy);
   }, [filterBy]);
-
 
   function handleDropdownState(ev) {
     if (ev.target.placeholder === "Search Destination") {
@@ -44,9 +38,34 @@ export function AppHeader() {
   function hundleChangeDebounced(ev) {
     clearTimeout(searchTimeout.current);
     searchTimeout.current = setTimeout(() => {
-      const { name , value } = ev.target;
-      setFilterBy((prevFilterBy) => ({ ...prevFilterBy, [name]: value }));
+      const { name, value } = ev.target;
+      const updatedFilter = { ...filterBy, [name]: value };
+      setFilterBy(updatedFilter);
+      setSearchData(updatedFilter);
     }, 500);
+  }
+
+  function hundeDatesSearch(date) {
+    if (!dates.current[0]) {
+      dates.current[0] = date;
+    } else {
+      dates.current[1] = date;
+    }
+    const [startDate, endDate] = dates.current;
+    if (startDate && endDate) {
+      const updatedFilter = { ...filterBy, startDate, endDate };
+      setFilterBy(updatedFilter);
+      setSearchData(updatedFilter);
+    }
+  }
+  
+  function handleGuestChange(guestType, diff) {
+    const updatedGuests = { ...search.guests };
+    updatedGuests[guestType] = Math.max(0, (updatedGuests[guestType] || 0) + diff);
+    const totalGuests = Object.values(updatedGuests).reduce((sum, val) => sum + val, 0);
+    const updatedFilter = { ...filterBy, totalGuests: totalGuests };
+    setSearchData({ ...search, guests: updatedGuests, totalGuests: totalGuests });
+    setFilterBy({ ...updatedFilter, guests: updatedGuests });
   }
 
   return (
@@ -126,10 +145,10 @@ export function AppHeader() {
             <DatePicker
               className="from"
               placeholderText="Add dates"
-              // selected={startDate}
-              // onChange={(date) => setStartDate(date)}
-              // startDate={search.startDate}
-              // endDate={search.endDate}
+              selected={dates.current[0]}
+              onChange={hundeDatesSearch}
+              startDate={dates.current[0]}
+              endDate={dates.current[1]}
               selectsRange
             />
           </div>
@@ -145,7 +164,7 @@ export function AppHeader() {
             />
             {isWhoDropdownOpen && (
               <div className="who-dropdown">
-                {["adults", "children", "infants", "pets"].map(key => (
+                {["adults", "children", "infants", "pets"].map((key) => (
                   <div className="guest-row" key={key}>
                     <div className="guest-info">
                       <strong>
@@ -162,7 +181,7 @@ export function AppHeader() {
                     <div className="guest-controls">
                       <button
                         className="guest-btn"
-                        // onClick={() => handleGuestChange(key, -1)}
+                        onClick={() => handleGuestChange(key, -1)}
                         disabled={search.guests?.[key] === 0}
                       >
                         −
@@ -170,7 +189,7 @@ export function AppHeader() {
                       <span>{search.guests?.[key] || 0}</span>
                       <button
                         className="guest-btn"
-                        // onClick={() => handleGuestChange(key, 1)}
+                        onClick={() => handleGuestChange(key, 1)}
                       >
                         +
                       </button>

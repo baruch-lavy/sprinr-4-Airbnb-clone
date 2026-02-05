@@ -47,10 +47,17 @@ export function getDefaultFilter() {
     minPrice: 0,
     maxPrice: Infinity,
     destination: null,
-    guests: 0,
+    guests: {
+      adults: 0,
+      children: 0,
+      infants: 0,
+      pets: 0,
+    },
+    totalGuests: 0,
     startDate: null,
     endDate: null,
     category: null,
+    isSearchByDates: false,
   };
 }
 
