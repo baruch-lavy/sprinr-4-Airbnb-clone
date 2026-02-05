@@ -22,7 +22,7 @@ async function query(filterBy = { txt: '', minPrice: 0, maxPrice: Infinity, dest
         const collection = await dbService.getCollection('stay')
 
         const criteria = {}
-        
+
         if (filterBy.txt) {
             const regex = new RegExp(filterBy.txt, 'i')
             criteria.name = { $regex: regex }
@@ -69,9 +69,11 @@ async function query(filterBy = { txt: '', minPrice: 0, maxPrice: Infinity, dest
             criteria.capacity = { $gte: totalGuests }
         }
 
-        if (filterBy.startDate && filterBy.endDate) {
-            const searchStart = new Date(filterBy.startDate).getTime()
-            const searchEnd = new Date(filterBy.endDate).getTime()
+        if (filterBy.startDate && filterBy.endDate && filterBy.isSearchByDates === "true") {
+            console.log(filterBy);
+            const searchStart = new Date(filterBy.startDate).getUTCDate()  
+            const searchEnd = new Date(filterBy.endDate).getUTCDate()
+            console.log({ 'searchStart': searchStart, 'searchEnd': searchEnd });
 
             criteria.dates = {
                 $elemMatch: {
