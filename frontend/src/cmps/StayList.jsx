@@ -1,5 +1,3 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
 import { StayPreview } from "./StayPreview";
 
 export function StayList({ stays }) {

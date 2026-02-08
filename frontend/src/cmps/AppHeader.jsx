@@ -68,6 +68,13 @@ export function AppHeader() {
     setFilterBy({ ...updatedFilter, guests: updatedGuests });
   }
 
+  function hundleWhereDropdownClick(destinationName) {
+    const updatedFilter = { ...filterBy, destination: destinationName };
+    setFilterBy(updatedFilter);
+    setSearchData(updatedFilter);
+    setIsWhereDropdownOpen(false);
+  }
+
   return (
     <header className="app-header">
       <div className="left-section">
@@ -127,7 +134,7 @@ export function AppHeader() {
             <div className="where-dropdown">
               <div className="dropdown-header">Suggested destinations</div>
               {destinations.map((dest, index) => (
-                <div key={index} className="suggestion">
+                <div key={index} className="suggestion" onClick={ () => hundleWhereDropdownClick(dest.name)}>
                   <FontAwesomeIcon icon={dest.icon} className="icon" />
                   <div>
                     <strong>{dest.name}</strong>

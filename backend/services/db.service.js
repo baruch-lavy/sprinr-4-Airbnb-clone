@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import dns from "dns";
 import { logger } from "./logger.service.js";
 
-// ✅ Load environment variables from .env
+//  Load environment variables from .env
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -19,13 +19,13 @@ async function getCollection(collectionName) {
     const collection = await db.collection(collectionName);
     return collection;
   } catch (err) {
-    logger.error(`❌ Failed to get collection: ${collectionName}`, err);
+    logger.error(` Failed to get collection: ${collectionName}`, err);
     throw err;
   }
 }
 
 async function _connect() {
-  console.log("🚀 Connecting to MongoDB...", MONGO_URI, DB_NAME);
+  console.log("Connecting to MongoDB...", MONGO_URI, DB_NAME);
   // If the system DNS resolver is a local proxy that refuses SRV queries (e.g. 127.0.0.1),
   // override Node's DNS servers to use public resolvers which support SRV lookups.
   try {
@@ -43,7 +43,7 @@ async function _connect() {
   if (dbConn) return dbConn;
 
   try {
-    if (!MONGO_URI) throw new Error("❌ MONGO_URI is missing in .env");
+    if (!MONGO_URI) throw new Error(" MONGO_URI is missing in .env");
     // determine DB name: prefer explicit DB_NAME, otherwise try to parse from the URI
     let dbName = DB_NAME;
     if (!dbName) {
@@ -61,20 +61,20 @@ async function _connect() {
     await client.connect();
     dbConn = client.db(dbName);
 
-    logger.info(`✅ Connected to MongoDB: ${dbName}`);
+    logger.info(` Connected to MongoDB: ${dbName}`);
     return dbConn;
   } catch (err) {
     // If SRV lookup fails, give a clearer hint for the user
     if (err && err.message && err.message.includes("querySrv")) {
       logger.error(
-        "❌ Cannot connect to MongoDB via SRV. DNS SRV lookup failed.\n" +
+        " Cannot connect to MongoDB via SRV. DNS SRV lookup failed.\n" +
           "  - Check your network/DNS (port 53) or VPN/firewall settings.\n" +
           "  - Alternatively, use the non-SRV connection string Atlas provides (mongodb://...)\n" +
           "  - Ensure your .env MONGO_URI is correct and reachable",
         err,
       );
     } else {
-      logger.error("❌ Cannot connect to MongoDB", err);
+      logger.error(" Cannot connect to MongoDB", err);
     }
     throw err;
   }

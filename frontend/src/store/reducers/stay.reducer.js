@@ -3,14 +3,13 @@ export const SET_STAY = "SET_STAY"
 export const REMOVE_STAY = "REMOVE_STAY"
 export const ADD_STAY = "ADD_STAY"
 export const UPDATE_STAY =  "UPDATE_STAY"
-
-import { SET_SEARCH_DATA } from "../actions/stay.actions";
-
+export const SET_SEARCH_DATA = "SET_SEARCH_DATA"
+export const SET_PAGE_INDEX = "SET_PAGE_INDEX"
 
 const initialState = {
     stays: [],
     stay: null,
-    destination: "",
+    destination: null,
     startDate: null,
     endDate: null,
     totalGuests: 0,
@@ -19,7 +18,9 @@ const initialState = {
       children: 0,
       infants: 0,
       pets :0
-    }
+    },
+    maxPage: 100,
+    pageIndex: 0,
 }
 
 export const searchReducer = (state = initialState, action) => {
@@ -55,7 +56,11 @@ export function stayReducer(state = initialState, action) {
             stays = state.stays.map(stay => stay._id === action.stay._id ? action.stay : stay)
             newState = { ...state, stays: stays }     
             break
+        case SET_PAGE_INDEX:
+            newState = { ...state, pageIndex: action.pageIndex }
+            break
         default:
+            return state
     }
     return newState
 }
