@@ -23,7 +23,6 @@ async function query(filterBy = {}) {
 
     users = users.map((user) => {
       delete user.password;
-      user.createdAt = user._id.getTimestamp();
       return user;
     });
 

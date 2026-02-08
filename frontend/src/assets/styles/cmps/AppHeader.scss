@@ -97,6 +97,7 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  position: relative;
 
   .right-section-text {
     font-size: 0.85rem;
@@ -111,10 +112,75 @@
 
   .humburger-img {
     margin: 0 1rem;
+    cursor: pointer;
   }
 
   .language-img {
     margin-left: 1rem;
+  }
+
+  .user-dropdown {
+    position: absolute;
+    top: 75px;
+    right: 1rem;
+    width: 230px;
+    background: white;
+    border: 1px solid $gray1;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    padding: 1rem;
+
+    .help-txt {
+      font-size: 0.9rem;
+      color: #222;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $gray1;
+      padding-bottom: 0.5rem;
+
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    > p {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #222;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background: $gray1;
+        border-radius: 0.5rem;
+      }
+    }
+
+    .login-link {
+      font-weight: 600;
+      color: #ff385c;
+      text-align: center;
+      display: block;
+    }
+  }
+
+  .right-section-user-txt {
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-top: 0.9rem;
+    color: #ff385c;
+  }
+
+  .user-img {
+    margin-right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    object-fit: cover;
+    object-position: center;
   }
 
   @media (max-width: 1200px) {
@@ -377,7 +443,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
   padding: 1rem;
-
 
   .guest-row {
     display: flex;

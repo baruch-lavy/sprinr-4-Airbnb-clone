@@ -5,10 +5,9 @@ import { userService } from '../services/user'
 import { login } from '../store/actions/user.actions'
 
 export function Login() {
-    const [users, setUsers] = useState([])
-    const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
-
     const navigate = useNavigate()
+    const [users, setUsers] = useState([])
+    const [credentials, setCredentials] = useState({ username: '', password: ''})
 
     useEffect(() => {
         loadUsers()
@@ -42,6 +41,8 @@ export function Login() {
                     <option value="">Select User</option>
                     {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
             </select>
+            <label htmlFor="password">Password</label>
+            <input id='password' type="password" name="password" value={credentials.password} onChange={handleChange} />
             <button>Login</button>
         </form>
     )
