@@ -8,18 +8,21 @@ import { useSelector } from "react-redux";
 import { useState, useEffect, useRef } from "react";
 import { loadStays } from "../store/actions/stay.actions";
 import { setSearchData } from "../store/actions/stay.actions";
+import { showSuccessMsg } from "../services/event-bus.service";
 
-export function AppHeader() {
+export function AppHeader({ user }) {
+  showSuccessMsg(`Destination set to ${user ? user.fullname : "Guest"}`);
   const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
   const [isWhoDropdownOpen, setIsWhoDropdownOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const search = useSelector((state) => state.searchModule);
   const [filterBy, setFilterBy] = useState(getDefaultFilter());
   const searchTimeout = useRef(null);
   const dates = useRef([null, null]);
-  const pageIndex = useSelector((storeState) => storeState.stayModule.pageIndex);
+  const pageIndex = useSelector(
+    (storeState) => storeState.stayModule.pageIndex,
+  );
   const localPageIndex = useRef(0);
-
-  console.log('pageIndex', pageIndex);
 
   useEffect(() => {
     loadStays(filterBy);
@@ -73,13 +76,23 @@ export function AppHeader() {
       setSearchData(updatedFilter);
     }
   }
-  
+
   function handleGuestChange(guestType, diff) {
     const updatedGuests = { ...search.guests };
-    updatedGuests[guestType] = Math.max(0, (updatedGuests[guestType] || 0) + diff);
-    const totalGuests = Object.values(updatedGuests).reduce((sum, val) => sum + val, 0);
+    updatedGuests[guestType] = Math.max(
+      0,
+      (updatedGuests[guestType] || 0) + diff,
+    );
+    const totalGuests = Object.values(updatedGuests).reduce(
+      (sum, val) => sum + val,
+      0,
+    );
     const updatedFilter = { ...filterBy, totalGuests: totalGuests };
-    setSearchData({ ...search, guests: updatedGuests, totalGuests: totalGuests });
+    setSearchData({
+      ...search,
+      guests: updatedGuests,
+      totalGuests: totalGuests,
+    });
     setFilterBy({ ...updatedFilter, guests: updatedGuests });
   }
 
@@ -88,6 +101,10 @@ export function AppHeader() {
     setFilterBy(updatedFilter);
     setSearchData(updatedFilter);
     setIsWhereDropdownOpen(false);
+  }
+
+  function hundleHumburgerClick() {
+    setIsUserDropdownOpen(!isUserDropdownOpen);
   }
 
   return (
@@ -122,6 +139,9 @@ export function AppHeader() {
       </div>
 
       <div className="right-section">
+        {user && (
+          <img className="user-img" src={user.imgUrl} alt={user.fullname} />
+        )}
         <p className="right-section-text">Become a Host</p>
         <img
           className="language-img"
@@ -132,7 +152,37 @@ export function AppHeader() {
           className="humburger-img"
           src="https://cdn-icons-png.flaticon.com/128/6015/6015685.png"
           alt=""
+          onClick={hundleHumburgerClick}
         />
+
+        {isUserDropdownOpen && (
+          <div className="user-dropdown">
+            <p className="help-txt">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#221e1e"
+              >
+                <path d="M513.5-254.5Q528-269 528-290t-14.5-35.5Q499-340 478-340t-35.5 14.5Q428-311 428-290t14.5 35.5Q457-240 478-240t35.5-14.5ZM442-394h74q0-33 7.5-52t42.5-52q26-26 41-49.5t15-56.5q0-56-41-86t-97-30q-57 0-92.5 30T342-618l66 26q5-18 22.5-39t53.5-21q32 0 48 17.5t16 38.5q0 20-12 37.5T506-526q-44 39-54 59t-10 73Zm38 314q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z" />
+              </svg>
+              Help Center
+            </p>
+            <p>
+              <strong>Become a host</strong>
+              <br />
+              Host your home, host an experience, or host a restaurant
+            </p>
+            <NavLink
+              to={"/login"}
+              className="login-link"
+              onClick={() => setIsUserDropdownOpen(false)}
+            >
+              <strong>Login/Signup</strong>
+            </NavLink>
+          </div>
+        )}
       </div>
 
       <div className="search-container">
@@ -149,7 +199,11 @@ export function AppHeader() {
             <div className="where-dropdown">
               <div className="dropdown-header">Suggested destinations</div>
               {destinations.map((dest, index) => (
-                <div key={index} className="suggestion" onClick={ () => hundleWhereDropdownClick(dest.name)}>
+                <div
+                  key={index}
+                  className="suggestion"
+                  onClick={() => hundleWhereDropdownClick(dest.name)}
+                >
                   <FontAwesomeIcon icon={dest.icon} className="icon" />
                   <div>
                     <strong>{dest.name}</strong>

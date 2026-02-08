@@ -5,7 +5,7 @@ function createEventEmitter() {
     return {
         on(evName, listener){
             listenersMap[evName] = (listenersMap[evName])? [...listenersMap[evName], listener] : [listener]
-            return ()=>{
+            return ()=> {
                 listenersMap[evName] = listenersMap[evName].filter(func => func !== listener)
             }
         },

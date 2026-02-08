@@ -1,10 +1,7 @@
-import React from 'react'
 import { Routes, Route } from 'react-router'
 
-import { HomePage } from './pages/HomePage'
 import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs'
 import { StayIndex } from './pages/StayIndex.jsx'
-import { CarIndex } from './pages/CarIndex.jsx'
 import { ReviewIndex } from './pages/ReviewIndex.jsx'
 import { ChatApp } from './pages/Chat.jsx'
 import { AdminIndex } from './pages/AdminIndex.jsx'
@@ -18,11 +15,15 @@ import { UserMsg } from './cmps/UserMsg.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
+import { useSelector } from 'react-redux'
+
 
 export function RootCmp() {
+    const user = useSelector(state => state.userModule.user)
+
     return (
         <div className="main-container">
-            <AppHeader />
+            <AppHeader user={user} />
             <UserMsg />
 
             <main >
