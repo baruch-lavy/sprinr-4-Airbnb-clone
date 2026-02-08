@@ -58,8 +58,11 @@ export function getDefaultFilter() {
     endDate: null,
     category: null,
     isSearchByDates: false,
-  };
-}
+    pageIndex : 0,
+  }
+}   
+
+
 
 export function generateRandomData(stay) {
   const rating = (Math.random() * stay.reviews?.length).toFixed(2);

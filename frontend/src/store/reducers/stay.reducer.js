@@ -19,7 +19,6 @@ const initialState = {
       infants: 0,
       pets :0
     },
-    maxPage: 100,
     pageIndex: 0,
 }
 
