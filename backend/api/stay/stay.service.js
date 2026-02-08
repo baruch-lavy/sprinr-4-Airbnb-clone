@@ -4,7 +4,7 @@ import { logger } from "../../services/logger.service.js";
 import { makeId } from "../../services/util.service.js";
 import { asyncLocalStorage } from "../../services/als.service.js";
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 24;
 
 export const stayService = {
   query,
@@ -28,6 +28,7 @@ async function query(
     startDate: null,
     endDate: null,
     category: null,
+    pageIndex: 0,
   },
 ) {
   try {
@@ -107,7 +108,9 @@ async function query(
     console.log("Final MongoDB Query:", criteria);
 
     const stays = await collection.find(criteria).toArray();
-    return stays;
+    const startIndex = filterBy.pageIndex * PAGE_SIZE;
+    const paginatedStays = stays.slice(startIndex, startIndex + PAGE_SIZE);
+    return paginatedStays;
   } catch (err) {
     console.error(" Failed to get stays:", err);
     throw err;

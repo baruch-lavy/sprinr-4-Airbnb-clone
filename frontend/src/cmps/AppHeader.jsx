@@ -16,11 +16,26 @@ export function AppHeader() {
   const [filterBy, setFilterBy] = useState(getDefaultFilter());
   const searchTimeout = useRef(null);
   const dates = useRef([null, null]);
+  const pageIndex = useSelector((storeState) => storeState.stayModule.pageIndex);
+  const localPageIndex = useRef(0);
 
+  console.log('pageIndex', pageIndex);
 
   useEffect(() => {
     loadStays(filterBy);
   }, [filterBy]);
+
+  useEffect(() => {
+    handlePageIndexChange();
+  }, [pageIndex]);
+
+  function handlePageIndexChange() {
+    if (localPageIndex.current !== pageIndex) {
+      const updatedFilter = { ...filterBy, pageIndex };
+      localPageIndex.current = pageIndex;
+      setFilterBy(updatedFilter);
+    }
+  }
 
   function handleDropdownState(ev) {
     if (ev.target.placeholder === "Search Destination") {

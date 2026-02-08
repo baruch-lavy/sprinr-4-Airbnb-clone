@@ -1,0 +1,25 @@
+.pagination {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    button {
+        background: blue;
+        border: 3px solid rgb(196, 184, 184);
+        padding: 1rem;
+        border-radius: 2rem;
+        font-weight: 600;
+    }
+
+    button:hover {
+        background: rgb(240, 4, 181);
+        transform: rotateZ(5deg);
+    }
+
+    span {
+        color: rgb(172, 10, 91);
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+}
