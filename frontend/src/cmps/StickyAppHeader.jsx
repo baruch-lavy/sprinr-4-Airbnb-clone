@@ -6,7 +6,11 @@ import { SET_STICKY_HEADER } from "../store/reducers/system.reducer";
 
 export function StickyAppHeader({ user }) {
   const { isStickyHeader } = useSelector((state) => state.systemModule);
+  const { isDetailsPage } = useSelector((state) => state.systemModule);
   const dispatch = useDispatch();
+
+
+
   useEffect(() => {
     window.addEventListener("scroll", hundleIsStickyHeader);
     return () => {
@@ -16,6 +20,7 @@ export function StickyAppHeader({ user }) {
   }, []);
 
   function hundleIsStickyHeader() {
+    if (isDetailsPage) return;
     if (window.scrollY > 10) {
       if (!isStickyHeader) {
         dispatch({ type: SET_STICKY_HEADER, isSticky: true });

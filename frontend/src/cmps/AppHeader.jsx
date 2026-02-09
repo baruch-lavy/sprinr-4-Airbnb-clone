@@ -27,6 +27,7 @@ export function AppHeader({ user }) {
   );
   const localPageIndex = useRef(0);
   const isStickyHeader = useSelector((state) => state.systemModule.isStickyHeader);
+  const isDetailsPage = useSelector((state) => state.systemModule.isDetailsPage);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,6 +46,7 @@ export function AppHeader({ user }) {
   }, []);
 
   function hundleIsStickyHeader() {
+    if (isDetailsPage) return;
     if (window.scrollY > 10) {
       if (!isStickyHeader) {
         dispatch({ type: SET_STICKY_HEADER, isSticky: true });
