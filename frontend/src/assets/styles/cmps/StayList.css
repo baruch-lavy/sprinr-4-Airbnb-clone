@@ -11,3 +11,16 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 0.5rem;
 }
+
+.stay-preview {
+    cursor: pointer;
+}
+
+.stay-preview:hover {
+    img {
+        outline: 2px solid pink;
+        filter: brightness(0.9);
+        transform: scale(1.02);
+        transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+    }
+}

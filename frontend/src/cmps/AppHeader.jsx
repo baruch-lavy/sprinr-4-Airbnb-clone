@@ -110,9 +110,9 @@ export function AppHeader({ user }) {
   return (
     <header className="app-header">
       <div className="left-section">
-        <NavLink className="nav-link">
+        <NavLink className="nav-link" to={"/"}>
           <div className="logo-wrapper">
-            <FaAirbnb className="logo" />
+            <FaAirbnb className="logo"/>
             <p className="logo-text">airbnb</p>
           </div>
         </NavLink>
