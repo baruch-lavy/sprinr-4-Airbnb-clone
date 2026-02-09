@@ -85,6 +85,24 @@ export function StayDetails() {
             </div>
           </div>
         </div>
+        <div className="host-details">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1688700438303-44bfcc7b43c3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTB8fGhvc3R8ZW58MHx8MHx8fDA%3D"
+            alt={`${stay?.host.fullname}'s profile`}
+            className="host-img"
+            width="50px"
+          />
+          <div className="host-description">
+            <h3 className="host-name">Hosted by {stay?.host.fullname}</h3>
+            <span>
+              {stay?.host.isSuperhost && <span className="superhost">{'Superhost' + ' · '}</span>}
+              <span>
+                {Math.ceil(Math.random() * 10) + ' '}
+                Years hosting
+              </span>
+            </span>
+          </div>
+        </div>
       </section>
     </main>
   );
