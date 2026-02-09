@@ -1,4 +1,4 @@
-@import '../setup/variables';
+@import "../setup/variables";
 
 * {
   margin: 0;
@@ -48,7 +48,13 @@
 
   .language-img,
   .humburger-img {
-    width: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    background: $gray1;
+    padding: 0.5rem;
+    border-radius: 50%;
   }
 
   .humburger-img {

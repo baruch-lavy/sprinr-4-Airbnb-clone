@@ -30,7 +30,6 @@ export function StayDetails() {
   }, [stayId]);
 
   function hundleIsStickyHeaderOnClick(ev) { 
-    console.log(ev);
     if (!isStickyHeader && ev.clientY > 200) {
       dispatch({ type: SET_STICKY_HEADER, isSticky: true });
     }
