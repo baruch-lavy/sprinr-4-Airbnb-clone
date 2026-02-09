@@ -142,3 +142,12 @@
     flex-direction: column;
   }
 }
+
+/* long-description */
+.long-description {
+  padding: 30px 0;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.8;
+  border-bottom: 1px solid #c7c5c5;
+}

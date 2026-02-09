@@ -126,6 +126,9 @@ export function StayDetails() {
             </div>
           </div>
         </div>
+        <div className="long-description">
+          {stay?.summary}
+        </div>
       </section>
     </main>
   );
