@@ -10,8 +10,8 @@ import { StayDetails } from './pages/StayDetails.jsx'
 import { UserDetails } from './pages/UserDetails'
 
 import { AppHeader } from './cmps/AppHeader'
+import { StickyAppHeader } from './cmps/StickyAppHeader'
 import { AppFooter } from './cmps/AppFooter'
-import { UserMsg } from './cmps/UserMsg.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
@@ -20,12 +20,11 @@ import { useSelector } from 'react-redux'
 
 export function RootCmp() {
     const user = useSelector(state => state.userModule.user)
+    const isStickyHeader = useSelector(state => state.systemModule.isStickyHeader)
 
     return (
         <div className="main-container">
-            <AppHeader user={user} />
-            <UserMsg />
-
+            {isStickyHeader ? <StickyAppHeader user={user} /> : <AppHeader user={user} />}
             <main >
                 <Routes>
                     <Route path="/" element={<StayIndex />} />
