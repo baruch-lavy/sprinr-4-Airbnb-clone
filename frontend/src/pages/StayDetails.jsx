@@ -103,6 +103,29 @@ export function StayDetails() {
             </span>
           </div>
         </div>
+        <div className="short-desc-points">
+          <div className="short-desc-point">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M436-740q28-28 68-28t68 28q28 28 28 68t-28 68q-28 28-68 28t-68-28q-28-28-28-68t28-68ZM504 0 336-180l60-84-60-72 72-96v-20q-68-32-106-89.5T264-672q0-100 70-170t170-70q100 0 170 70t70 170q0 65-32.5 120T624-464v344L504 0ZM336-672q0 63 40.5 110.5T480-506v98l-52 70 59 71-58 81 76 82 47-46v-361q53-16 86.5-61T672-672q0-70-49-119t-119-49q-70 0-119 49t-49 119Z"/></svg>
+            <div className="desc">
+              <span><strong>Exceptional check-in experience</strong></span>
+              <span>Recent guests gave the check-in process a 5-star rating.</span>
+            </div>
+          </div>
+          <div className="short-desc-point">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M443.79-444q15.21 0 25.71-10.29t10.5-25.5q0-15.21-10.29-25.71t-25.5-10.5q-15.21 0-25.71 10.29t-10.5 25.5q0 15.21 10.29 25.71t25.5 10.5ZM288-145v-71l240-48v-393q0-16.92-10.5-30.46T490-704l-202-40v-72l217 40q41.8 8.07 68.4 41.35Q600-701.37 600-657v450l-312 62Zm-144 1v-72h72v-528q0-30 21.15-51T288-816h384q30 0 51 21t21 51v528h72v72H144Zm144-72h384v-528H288v528Z"/></svg>
+            <div className="desc">
+              <span><strong>Self check-in</strong></span>
+              <span>You can check in with the building staff.</span>
+            </div>
+          </div>
+          <div className="short-desc-point">
+            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#000000"><path d="M531-501q21-21 21-51t-21-51q-21-21-51-21t-51 21q-21 21-21 51t21 51q21 21 51 21t51-21Zm-51 310q119-107 179.5-197T720-549q0-105-68.5-174T480-792q-103 0-171.5 69T240-549q0 71 60.5 161T480-191Zm0 95Q323-227 245.5-339.5T168-549q0-134 89-224.5T480-864q133 0 222.5 90.5T792-549q0 97-77 209T480-96Zm0-456Z"/></svg>
+            <div className="desc">
+              <span><strong>Beautiful area</strong></span>
+              <span>Guests love this home’s scenic location.</span>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
