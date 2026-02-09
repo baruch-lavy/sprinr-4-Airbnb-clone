@@ -9,6 +9,9 @@ import { useState, useEffect, useRef } from "react";
 import { loadStays } from "../store/actions/stay.actions";
 import { setSearchData } from "../store/actions/stay.actions";
 import { showSuccessMsg } from "../services/event-bus.service";
+import { SET_STICKY_HEADER } from '../store/reducers/system.reducer'
+import { useDispatch } from "react-redux";
+
 
 export function AppHeader({ user }) {
   showSuccessMsg(`Destination set to ${user ? user.fullname : "Guest"}`);
@@ -23,6 +26,8 @@ export function AppHeader({ user }) {
     (storeState) => storeState.stayModule.pageIndex,
   );
   const localPageIndex = useRef(0);
+  const isStickyHeader = useSelector((state) => state.systemModule.isStickyHeader);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loadStays(filterBy);
@@ -31,6 +36,23 @@ export function AppHeader({ user }) {
   useEffect(() => {
     handlePageIndexChange();
   }, [pageIndex]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", hundleIsStickyHeader);
+    return () => {
+      window.removeEventListener("scroll", hundleIsStickyHeader);
+    };
+  }, []);
+
+  function hundleIsStickyHeader() {
+    if (window.scrollY > 10) {
+      if (!isStickyHeader) {
+        dispatch({ type: SET_STICKY_HEADER, isSticky: true });
+      }
+    } else {
+        dispatch({ type: SET_STICKY_HEADER, isSticky: false });
+    }
+  }
 
   function handlePageIndexChange() {
     if (localPageIndex.current !== pageIndex) {
