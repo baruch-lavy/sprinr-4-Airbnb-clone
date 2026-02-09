@@ -1,6 +1,6 @@
 import { stayService, getDefaultFilter } from "../../services/stay"
 import { store } from "../store"
-import { SET_STAYS, ADD_STAY, UPDATE_STAY, REMOVE_STAY, SET_PAGE_INDEX } from "../reducers/stay.reducer"
+import { SET_STAYS,SET_STAY, ADD_STAY, UPDATE_STAY, REMOVE_STAY, SET_PAGE_INDEX } from "../reducers/stay.reducer"
 
 export const SET_SEARCH_DATA = 'SET_SEARCH_DATA'
 
@@ -26,7 +26,7 @@ export async function loadStays(filterBy = getDefaultFilter()) {
 export async function loadStay(stayId) {
     try {
         const stay = await stayService.getById(stayId)
-        store.dispatch({type: ADD_STAY, stay })
+        store.dispatch({type: SET_STAY, stay })
     } catch (err) {
         console.log('StayActions: err in loadStay', err)
         throw err
@@ -42,7 +42,6 @@ export async function removeStay(stayId) {
         throw err
     }
 }
-
 
 export async function addStay(stay) {
     try {

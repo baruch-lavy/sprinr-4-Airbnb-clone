@@ -1,16 +1,20 @@
 .login-form,
 .signup-form {
 	display: grid;
-	width: min(80%, 300px);
+	width: min(80%, 400px);
 	margin: auto;
 
 	padding: 1em;
-	background-color: $clr4;
+	background-color: rgb(157, 200, 230);
+	border-radius: 1rem;
 }
 
 .signup-form {
 	input {
 		width: 100%;
+		padding: 0.5em;
+		border-radius: 5px;
+		border: none;
 	}
 
     .admin-toggle {
@@ -22,26 +26,70 @@
             font-size: .8em;
         }
     }
+
+	button {
+		padding: 0.5em;
+		border-radius: 5px;
+		border: none;
+		background-color: #ee4d6b;
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $clr1;
+		}
+	}
+}
+
+.login-form {
+	input {
+		width: 100%;
+		padding: 0.5em;
+		border-radius: 5px;
+		border: none;
+	}
+
+	select {
+		width: 100%;
+		padding: 0.5em;
+		border-radius: 5px;
+		border: none;
+	}
+
+	button {
+		padding: 0.5em;
+		border-radius: 5px;
+		border: none;
+		background-color: #ee4d6b;
+		color: white;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $clr1;
+		}
+	}
 }
 
 .login-page nav {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 2em;
-
+	gap: 3em;
+	
 	margin-block: 100px 0.5em;
-
+	
 	a {
-		font-size: 0.8em;
-		color: $clr4;
+		color: #ff385c;
+		font-size: 1em;
+		font-weight: 600;
 
 		&:hover {
 			color: $clr1;
 		}
 	}
-	a.active {
-		text-decoration: underline;
-		color: $clr2;
-	}
+
 }
