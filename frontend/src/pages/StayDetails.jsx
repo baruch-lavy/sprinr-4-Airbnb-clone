@@ -129,6 +129,26 @@ export function StayDetails() {
         <div className="long-description">
           {stay?.summary}
         </div>
+        <div className="sleep-place">
+          <h3>Where you'll sleep</h3>
+          <div className="sleep-place-details">
+            <div className="place place-1">
+              <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkc3xlbnwwfHwwfHx8MA%3D%3D" alt="" />
+              <span><strong>Bedroom 1</strong></span>
+              <span>1 queen bed</span>
+            </div>
+            <div className="place place-2">
+              <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmVkc3xlbnwwfHwwfHx8MA%3D%3D" alt="" />
+              <span><strong>Bedroom 2</strong></span>
+              <span>1 queen bed</span>
+            </div>
+            <div className="place place-3">
+              <img src="https://images.unsplash.com/photo-1675756544970-968f9e3f7ca5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNvZmFzfGVufDB8fDB8fHww" alt="" />
+              <span><strong>Living Room</strong></span>
+              <span>1 Great sofa</span>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
