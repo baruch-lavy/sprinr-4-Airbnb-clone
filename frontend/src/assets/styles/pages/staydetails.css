@@ -201,10 +201,25 @@
   }
 }
 
-.mcs-item:after,
-.mcs-item > a:after {
-    /*! content: ''; */
-    /* display: inline-block;
-    height: 100%;
-    vertical-align: middle; */
+/* amenities */
+
+.amenities {
+  padding: 30px 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 20px;
+  border-bottom: 1px solid #c7c5c5;
+}
+
+.amenity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 400;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
