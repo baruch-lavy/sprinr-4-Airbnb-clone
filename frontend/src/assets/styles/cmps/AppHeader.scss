@@ -6,7 +6,7 @@
 
 .app-header {
   border-bottom: 0.1px solid $gray1;
-  height: 20vh;
+  min-height: 20vh;
   background: #fdfdfd;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
@@ -102,7 +102,6 @@
     margin-top: 0.9rem;
   }
 
-
   .humburger-img {
     display: flex;
     justify-content: center;
@@ -119,8 +118,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     background: $gray1;
     padding: 0.5rem;
     border-radius: 50%;
