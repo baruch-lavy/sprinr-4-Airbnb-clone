@@ -131,7 +131,7 @@ export function StayDetails() {
         </div>
         <div className="sleep-place">
           <h3>Where you'll sleep</h3>
-          <div className="sleep-place-detail MagicScroll" data-options="mode: animation width: 640px; items:3; step: 2; speed: 500; autoplay: true; loop: true; pauseOnHover: true;">
+          <div className="sleep-place-detail MagicScroll" data-options=" width: 640px; items:3; step: 2; ">
             <div className="place place-1">
               <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkc3xlbnwwfHwwfHx8MA%3D%3D" alt="" />
               <span><strong>Bedroom 1</strong></span>
