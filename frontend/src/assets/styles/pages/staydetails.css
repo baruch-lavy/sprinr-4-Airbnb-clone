@@ -51,6 +51,17 @@
 
 /* main-content */
 
+.main-content {
+  padding: 30px 0;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+.main-content > *:not(:last-child) {
+  grid-column: 1;
+}
+
 .stay-title {
   font-size: 1.4em;
   letter-spacing: 0.5px;
@@ -242,7 +253,7 @@
     margin-bottom: 0.5rem;
   }
 
-  .react-datepicker  {
+  .react-datepicker {
     border: 1px solid #c7c5c5;
     border-radius: 8px;
     padding: 10px;
@@ -252,11 +263,88 @@
   .react-datepicker__navigation {
     top: 5px;
     background-color: transparent;
-
   }
 
   .react-datepicker__header {
     margin-top: 1.5rem;
   }
-   
+}
+
+/* reserve */
+
+.reserve {
+  position: sticky;
+  top: 100px;
+  grid-column: 2;
+  grid-row: 1;
+  padding: 30px 10px;
+  max-width: 250px;
+  text-align: center;
+  border: 1px solid #c7c5c5;
+  border-radius: 1rem;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 3px 3px 3px rgba(73, 69, 69, 0.1);
+
+  .price {
+    margin-right: 5px;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+
+  .info {
+    min-height: 120px;
+    border: 1px solid #c7c5c5;
+    border-radius: 1rem;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .check-in-out {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 0.5rem;
+      grid-column: span 2;
+      font-weight: 500;
+      border-bottom: 1px solid #c7c5c5;
+
+      .check-in,
+      .check-out {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .border {
+        width: 1px;
+        height: 55px;
+        background-color: #c7c5c5;
+      }
+    }
+
+    .guests {
+      align-self: center;
+    }
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #ff5a5f;
+    color: #fff;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    width: 90%;
+
+    &:hover {
+      background-color: #e04848;
+    }
+  }
 }
