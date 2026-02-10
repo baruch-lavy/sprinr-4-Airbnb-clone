@@ -6,7 +6,6 @@ import {
   SET_DETAILS_PAGE,
 } from "../store/reducers/system.reducer";
 
-import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service";
 import { loadStay } from "../store/actions/stay.actions";
 
 export function StayDetails() {

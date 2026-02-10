@@ -201,10 +201,3 @@
   }
 }
 
-.mcs-item:after,
-.mcs-item > a:after {
-    /*! content: ''; */
-    /* display: inline-block;
-    height: 100%;
-    vertical-align: middle; */
-}
