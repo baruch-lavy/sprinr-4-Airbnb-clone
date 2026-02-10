@@ -398,6 +398,20 @@ export function StayDetails() {
               <button>Reserve</button>
             </div>
           </section>
+          <section className="reviews">
+            <h3>Reviews</h3>
+            {stay?.reviews.map((review, idx) => (
+              <div key={idx} className="review">
+                <div className="review-header">
+                  <img src={review.by.imgUrl} alt={`${review.by.fullname}'s profile`} />
+                  <span>{review.by.fullname}</span>
+                </div>
+                <div className="review-content">
+                  {review.txt}
+                </div>
+              </div>
+            ))}
+          </section>
         </>
       )}
     </main>
