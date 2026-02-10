@@ -6,7 +6,7 @@ import {
   SET_DETAILS_PAGE,
 } from "../store/reducers/system.reducer";
 import { loadStay } from "../store/actions/stay.actions";
-import {DatePicker} from 'react-datepicker';
+import { DatePicker } from "react-datepicker";
 
 export function StayDetails() {
   const dispatch = useDispatch();
@@ -352,16 +352,50 @@ export function StayDetails() {
             </div>
             <div className="calendar">
               <h3>2 nights in {stay?.loc.city}</h3>
-              <p>{new Date().toLocaleDateString()} - {new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toLocaleDateString()}</p>
+              <p>
+                {new Date().toLocaleDateString()} -{" "}
+                {new Date(
+                  Date.now() + 2 * 24 * 60 * 60 * 1000,
+                ).toLocaleDateString()}
+              </p>
 
               <DatePicker
                 selected={new Date()}
-                onChange={(date) => console.log(date)}  
+                onChange={(date) => console.log(date)}
                 startDate={new Date()}
                 endDate={new Date(Date.now() + 2 * 24 * 60 * 60 * 1000)}
                 selectsRange
                 inline
               />
+            </div>
+
+            <div className="reserve">
+              <div className="price-info">
+                <span className="price">${stay?.price * 2} </span>
+                <span className="nights">for 2 nights</span>
+              </div>
+              <div className="info">
+                <div className="check-in-out">
+                  <div className="check-in">
+                    <span>Check-in</span>
+                    <span>{new Date().toLocaleDateString()}</span>
+                  </div>
+                  <div className="border"></div>
+                  <div className="check-out">
+                    <span>Check-out</span>
+                    <span>
+                      {new Date(
+                        Date.now() + 2 * 24 * 60 * 60 * 1000,
+                      ).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="guests">
+                  <span>1 Guest</span>
+                </div>
+              </div>
+              <button>Reserve</button>
             </div>
           </section>
         </>
